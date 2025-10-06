@@ -1,0 +1,10 @@
+services:
+  peso-fraya:
+    build: .
+    container_name: peso-fraya
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./src:/app
+    environment:
+      - FLASK_ENV=development
