@@ -1,0 +1,33 @@
+flowchart TD
+    %% Usuario
+    U[User]
+
+    %% Funcionalidades principales
+    U --> UM[User Management]
+    U --> WHT[Weight & Height Tracking]
+    WHT --> DV[Data Visualization]
+
+    %% User Management
+    UM --> R[Register]
+    UM --> L[Login]
+    UM --> G[Personalized Greeting]
+
+    %% Weight & Height Tracking
+    WHT --> F[Add Weight & Height Entry]
+    F --> BMI[Calculate BMI]
+    BMI --> DB[Store Entry in Database]
+    DB --> H[View History]
+    DB --> MinMax[Show Min & Max Weight]
+
+    %% Data Visualization
+    DV --> Graph[Weight & Height Graph]
+
+    %% Infraestructura
+    subgraph Docker_Infra[Docker & Infrastructure]
+        DB_Backend[Flask Backend]
+        DB_DB[Database]
+        DB_Backend --> DB_DB
+        DB_Backend --> F
+        DB_Backend --> H
+        DB_Backend --> Graph
+    end
