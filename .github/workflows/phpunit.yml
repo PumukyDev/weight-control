@@ -7,37 +7,24 @@ on:
     branches: ["**"]
 
 jobs:
-  test:
+  phpunit:
     runs-on: ubuntu-latest
 
-    services:
-      mysql:
-        image: mariadb:latest
-        env:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: testdb
-          MYSQL_USER: user
-          MYSQL_PASSWORD: password
-        ports:
-          - 3306:3306
-        options: >-
-          --health-cmd="mysqladmin ping --silent"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=3
-
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
-          extensions: pdo_mysql, zip
+          extensions: mbstring, mysqli, pdo_mysql
           coverage: none
 
-      - name: Install dependencies
-        run: composer install --prefer-dist --no-interaction
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --prefer-dist
+        working-directory: src
 
-      - name: Run tests
-        run: ./vendor/bin/phpunit --testdox
+      - name: Run PHPUnit
+        run: vendor/bin/phpunit --testdox
+        working-directory: src
