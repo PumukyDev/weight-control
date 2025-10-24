@@ -12,12 +12,12 @@ $pesoController = new PesoController();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         //Validación básica
-        if (empty($_POST['name']) || empty($_POST['surnames']) || empty($_POST['weight']) || empty($_POST['height'])) {
+        if (empty($_POST['name']) || empty($_POST['surnames']) || empty($_POST['weight']) || empty($_POST['height']) || empty($_POST['birth'])) {
             throw new Exception("No puede haber campos vacíos");
         }
 
         // Registrar al usuario
-        $userController->createUser($_POST['name'], $_POST['surnames']);
+        $userController->createUser($_POST['name'], $_POST['surnames'], $_POST['birth']);
 
         // Obtener el ID del usuario
         $userID = $userController->getLastInsertedId();
@@ -71,6 +71,10 @@ $min = $pesoController->getMin();
         <label for="surnames">Apellidos: </label>
         <input type="text" name="surnames" id="surnames" />
 
+        <!-- Campo para la fecha de nacimiento -->
+        <label for="birth">Fecha de nacimiento: </label>
+        <input type="date" name="birth" id="birth" />
+
         <button type="submit">Añadir</button>
     </form>
 
@@ -84,7 +88,8 @@ $min = $pesoController->getMin();
                 <thead>
                     <tr>
                         <th>Usuario</th>
-                        <th>Fecha</th>
+                        <th>Fecha de nacimiento</th>
+                        <th>Fecha en que se añadió</th>
                         <th>Peso</th>
                         <th>Altura</th>
                     </tr>
@@ -95,6 +100,10 @@ $min = $pesoController->getMin();
                             <th>
                                 <?php echo htmlspecialchars($peso['name'] . ' ' . $peso['surnames']); ?>
                             </th>
+
+                            <td>
+                                <?php echo htmlspecialchars($peso['birth']); ?>
+                            </td>
 
                             <td>
                                 <?php echo htmlspecialchars($peso['fecha']); ?>

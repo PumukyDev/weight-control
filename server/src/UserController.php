@@ -23,9 +23,9 @@ class UserController
     }
 
     // Crear un usuario
-    public function createUser($name, $surnames)
+    public function createUser($name, $surnames, $birth)
     {
-        return $this->userModel->createUser($name, $surnames);
+        return $this->userModel->createUser($name, $surnames, $birth);
     }
 
     // Obtener el ID del último usuario añadido

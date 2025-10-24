@@ -27,7 +27,7 @@ class Peso
     // Obtener todos los pesos
     public function index()
     {
-        $stmt = $this->pdo->query("SELECT p.*, u.name, u.surnames 
+        $stmt = $this->pdo->query("SELECT p.*, u.name, u.surnames, u.birth
                                     FROM Pesajes p 
                                     INNER JOIN Users u ON p.id_user = u.id_user
                                     ORDER BY p.fecha DESC");

@@ -6,7 +6,8 @@ USE PesoFraya;
 CREATE TABLE Users(
     id_user INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
-    surnames VARCHAR(150) NOT NULL
+    surnames VARCHAR(150) NOT NULL,
+    birth DATE NOT NULL
 );
 
 /* Tabla pesajes */
