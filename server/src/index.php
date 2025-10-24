@@ -104,6 +104,7 @@ $min = $pesoController->getMin();
                         <th>Fecha en que se añadió</th>
                         <th>Peso</th>
                         <th>Altura</th>
+                        <th>IMC</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -127,6 +128,13 @@ $min = $pesoController->getMin();
 
                             <td>
                                 <?php echo htmlspecialchars($peso['altura']); ?>
+                            </td>
+
+                            <td>
+                                <?php 
+                                $imc = $peso['peso'] / ($peso['altura'] * $peso['altura']);
+                                echo htmlspecialchars(number_format($imc, 2));
+                                ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>
