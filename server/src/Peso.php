@@ -69,6 +69,17 @@ class Peso
             return false;
         }
     }
+
+    // Verificar si el usuario ya tiene un registro hoy
+    public function hasWeightToday($id_user)
+    {
+        $today = date('Y-m-d');
+        $stmt = $this->pdo->prepare("SELECT COUNT(*) as count FROM Pesajes 
+                                     WHERE id_user = ? AND DATE(fecha) = ?");
+        $stmt->execute([$id_user, $today]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['count'] > 0;
+    }
 }
 
 ?>

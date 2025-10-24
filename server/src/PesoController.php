@@ -51,6 +51,12 @@ class PesoController
     {
         return $this->pesoModel->getCount();
     }
+
+    // Verificar si el usuario ya registró peso hoy
+    public function hasWeightToday($id_user)
+    {
+        return $this->pesoModel->hasWeightToday($id_user);
+    }
 }
 
 ?>

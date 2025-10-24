@@ -25,6 +25,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $userID = $userController->getLastInsertedId();
         }
 
+        // Verificar si el usuario ya tiene un registro hoy
+        if ($pesoController->hasWeightToday($userID)) {
+            throw new Exception("Ya has registrado tu peso hoy. Solo puedes hacer un registro por día.");
+        }
+
         // Registrar el peso
         $pesoController->createWeight($_POST['weight'], $_POST['height'], date('Y-m-d H:i:s'), $userID);
 
@@ -89,6 +94,12 @@ $total = $pesoController->getCount();
 
     <br />
 
+    <?php if (!empty($error)): ?>
+        <div class="alert alert-danger" role="alert" id="errorAlert">
+            <i class="fas fa-exclamation-circle me-2"></i><?php echo htmlspecialchars($error); ?>
+        </div>
+    <?php endif; ?>
+
     <?php if (!empty($success)): ?>
         <div class="alert alert-success" role="alert" id="successAlert">
             <i class="fas fa-check-circle me-2"></i><?php echo htmlspecialchars($success); ?>
@@ -134,7 +145,7 @@ $total = $pesoController->getCount();
                             </td>
 
                             <td>
-                                <?php 
+                                <?php
                                 $imc = $peso['peso'] / ($peso['altura'] * $peso['altura']);
                                 echo htmlspecialchars(number_format($imc, 2));
                                 ?>
@@ -148,7 +159,7 @@ $total = $pesoController->getCount();
         Número de pesajes totales: <?php echo ("$total"); ?>
     </main>
 
-    <br/>
+    <br />
 
     <footer>
         <section>
@@ -171,11 +182,19 @@ $total = $pesoController->getCount();
 
 <script>
     setTimeout(function () {
-        const alert = document.getElementById('successAlert');
-        if (alert) {
-            alert.style.transition = 'opacity 0.5s';
-            alert.style.opacity = '0';
-            setTimeout(() => alert.remove(), 500);
+        const successAlert = document.getElementById('successAlert');
+        const errorAlert = document.getElementById('errorAlert');
+
+        if (successAlert) {
+            successAlert.style.transition = 'opacity 0.5s';
+            successAlert.style.opacity = '0';
+            setTimeout(() => successAlert.remove(), 500);
+        }
+
+        if (errorAlert) {
+            errorAlert.style.transition = 'opacity 0.5s';
+            errorAlert.style.opacity = '0';
+            setTimeout(() => errorAlert.remove(), 500);
         }
     }, 5000);
 </script>
