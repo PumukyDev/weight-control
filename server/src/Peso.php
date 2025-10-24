@@ -33,5 +33,25 @@ class Peso
                                     ORDER BY p.fecha DESC");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    // Obtener el peso máximo
+    public function getMax(){
+        $stmt = $this->pdo->query("SELECT p.peso as max_peso, u.name, u.surnames 
+                                FROM Pesajes p 
+                                INNER JOIN Users u ON p.id_user = u.id_user 
+                                ORDER BY p.peso DESC 
+                                LIMIT 1");
+                return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    // Obtener el peso mínimo
+    public function getMin(){
+        $stmt = $this->pdo->query("SELECT p.peso as min_peso, u.name, u.surnames 
+                        FROM Pesajes p 
+                        INNER JOIN Users u ON p.id_user = u.id_user 
+                        ORDER BY p.peso ASC 
+                        LIMIT 1");
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
 ?>

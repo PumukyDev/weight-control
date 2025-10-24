@@ -31,6 +31,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 // Obtener el historial de pesos
 $pesos = $pesoController->index();
+
+// Obtener el peso máximo
+$max = $pesoController->getMax();
+
+// Obtener el peso mínimo
+$min = $pesoController->getMin();
 ?>
 
 <?php
@@ -68,7 +74,7 @@ $pesos = $pesoController->index();
         <button type="submit">Añadir</button>
     </form>
 
-    <br/>
+    <br />
 
     <h2>Historial de pesos</h2>
 
@@ -107,6 +113,24 @@ $pesos = $pesoController->index();
             </table>
         </div>
     </main>
+
+    <footer>
+        <section>
+            <h5>Peso máximo histórico</h5>
+            <?php
+            echo htmlspecialchars($max['max_peso']) . ' kg - ';
+            echo htmlspecialchars($max['name'] . ' ' . $max['surnames']);
+            ?>
+        </section>
+
+        <section>
+            <h5>Peso mínimo histórico</h5>
+            <?php
+            echo htmlspecialchars($min['min_peso']) . ' kg - ';
+            echo htmlspecialchars($min['name'] . ' ' . $min['surnames']);
+            ?>
+        </section>
+    </footer>
 </body>
 
 </html>

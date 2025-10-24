@@ -29,11 +29,21 @@ class PesoController
     }
 
     // Obtener todos los pesos
-    // Mostrar todos los usuarios
     public function index()
     {
         $pesos = $this->pesoModel->index();
         return $pesos;
+    }
+
+    // Obtener el peso máximo
+    public function getMax(){
+        return $this->pesoModel->getMax();
+    }
+
+    // Obtener el peso mínimo
+    public function getMin(){
+        $min = $this->pesoModel->getMin();
+        return $min;
     }
 }
 
