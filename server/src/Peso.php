@@ -35,17 +35,19 @@ class Peso
     }
 
     // Obtener el peso máximo
-    public function getMax(){
+    public function getMax()
+    {
         $stmt = $this->pdo->query("SELECT p.peso as max_peso, u.name, u.surnames 
                                 FROM Pesajes p 
                                 INNER JOIN Users u ON p.id_user = u.id_user 
                                 ORDER BY p.peso DESC 
                                 LIMIT 1");
-                return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     // Obtener el peso mínimo
-    public function getMin(){
+    public function getMin()
+    {
         $stmt = $this->pdo->query("SELECT p.peso as min_peso, u.name, u.surnames 
                         FROM Pesajes p 
                         INNER JOIN Users u ON p.id_user = u.id_user 
@@ -53,5 +55,20 @@ class Peso
                         LIMIT 1");
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    // Obtener el número de pesajes totales
+
+    public function getCount()
+    {
+        try {
+            $stmt = $this->pdo->query("SELECT COUNT(*) as total FROM Pesajes");
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return isset($result['total']) ? (int) $result['total'] : 0;
+        } catch (PDOException $e) {
+            error_log("Error en getCount: " . $e->getMessage());
+            return false;
+        }
+    }
 }
+
 ?>

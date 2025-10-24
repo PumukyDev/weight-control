@@ -45,6 +45,12 @@ class PesoController
         $min = $this->pesoModel->getMin();
         return $min;
     }
+
+    // Obtener el número de pesajes totales
+    public function getCount()
+    {
+        return $this->pesoModel->getCount();
+    }
 }
 
 ?>

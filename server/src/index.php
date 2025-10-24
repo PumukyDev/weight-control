@@ -43,6 +43,9 @@ $max = $pesoController->getMax();
 
 // Obtener el peso mínimo
 $min = $pesoController->getMin();
+
+// Obtener el número total
+$total = $pesoController->getCount();
 ?>
 
 <?php
@@ -141,7 +144,11 @@ $min = $pesoController->getMin();
                 </tbody>
             </table>
         </div>
+
+        Número de pesajes totales: <?php echo ("$total"); ?>
     </main>
+
+    <br/>
 
     <footer>
         <section>
