@@ -28,6 +28,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = $e->getMessage();
     }
 }
+
+// Obtener el historial de pesos
+$pesos = $pesoController->index();
+?>
+
+<?php
+# Te lo dejo a ti, Alonso
+// Qué amable por tu parte
 ?>
 
 <!DOCTYPE html>
@@ -37,6 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Peso Fernando</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -59,14 +68,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <button type="submit">Añadir</button>
     </form>
 
-    <?php
-    # Te lo dejo a ti, Alonso
-    // Qué amable por tu parte
-    
+    <br/>
 
-    // Historial de pesos
-    
-    ?>
+    <h2>Historial de pesos</h2>
+
+    <main>
+        <div class="table-responsive">
+            <table class="table align-middle">
+                <thead>
+                    <tr>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                        <th>Peso</th>
+                        <th>Altura</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($pesos as $peso): ?>
+                        <tr class="tr">
+                            <th>
+                                <?php echo htmlspecialchars($peso['name'] . ' ' . $peso['surnames']); ?>
+                            </th>
+
+                            <td>
+                                <?php echo htmlspecialchars($peso['fecha']); ?>
+                            </td>
+
+                            <td>
+                                <?php echo htmlspecialchars($peso['peso']); ?>
+                            </td>
+
+                            <td>
+                                <?php echo htmlspecialchars($peso['altura']); ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </main>
 </body>
 
 </html>

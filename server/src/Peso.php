@@ -12,7 +12,8 @@ class Peso
     }
 
     // Crear el registro del peso
-    public function createWeight($weight, $height, $date, $id_user){
+    public function createWeight($weight, $height, $date, $id_user)
+    {
         try {
             $stmt = $this->pdo->prepare("INSERT INTO Pesajes (peso, altura, fecha, id_user) 
                                         VALUES (?, ?, ?, ?)");
@@ -21,6 +22,16 @@ class Peso
             error_log("Error en createWeight: " . $e->getMessage());
             return false;
         }
+    }
+
+    // Obtener todos los pesos
+    public function index()
+    {
+        $stmt = $this->pdo->query("SELECT p.*, u.name, u.surnames 
+                                    FROM Pesajes p 
+                                    INNER JOIN Users u ON p.id_user = u.id_user
+                                    ORDER BY p.fecha DESC");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
 ?>

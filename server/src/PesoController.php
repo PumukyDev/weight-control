@@ -27,6 +27,14 @@ class PesoController
     {
         return $this->pesoModel->createWeight($weight, $height, $date, $id_user);
     }
+
+    // Obtener todos los pesos
+    // Mostrar todos los usuarios
+    public function index()
+    {
+        $pesos = $this->pesoModel->index();
+        return $pesos;
+    }
 }
 
 ?>
