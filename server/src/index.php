@@ -24,6 +24,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Registrar el peso
         $pesoController->createWeight($_POST['weight'], $_POST['height'], date('Y-m-d H:i:s'), $userID);
+
+        // Saludo personalizado
+        $success = "Saludos, {$_POST['name']} {$_POST['surnames']}";
     } catch (Exception $e) {
         $error = $e->getMessage();
     }
@@ -79,6 +82,12 @@ $min = $pesoController->getMin();
     </form>
 
     <br />
+
+    <?php if (!empty($success)): ?>
+        <div class="alert alert-success" role="alert" id="successAlert">
+            <i class="fas fa-check-circle me-2"></i><?php echo htmlspecialchars($success); ?>
+        </div>
+    <?php endif; ?>
 
     <h2>Historial de pesos</h2>
 
@@ -141,5 +150,16 @@ $min = $pesoController->getMin();
         </section>
     </footer>
 </body>
+
+<script>
+    setTimeout(function () {
+        const alert = document.getElementById('successAlert');
+        if (alert) {
+            alert.style.transition = 'opacity 0.5s';
+            alert.style.opacity = '0';
+            setTimeout(() => alert.remove(), 500);
+        }
+    }, 5000);
+</script>
 
 </html>
