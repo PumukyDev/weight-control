@@ -33,6 +33,12 @@ class UserController
     {
         return $this->userModel->getLastInsertedId();
     }
+
+    // Comprobar si ya existe un usuario (para que pueda registrar más pesos)
+    public function getUserId($name, $surnames, $birth)
+    {
+        return $this->userModel->getUserId($name, $surnames, $birth);
+    }
 }
 
 ?>

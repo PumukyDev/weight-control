@@ -43,6 +43,15 @@ class User
     {
         return $this->pdo->lastInsertId();
     }
+
+    // Comprobar si ya existe un usuario (para que pueda registrar más pesos)
+    public function getUserId($username, $surnames, $birth)
+    {
+        $stmt = $this->pdo->prepare("SELECT id_user FROM Users WHERE name = ? AND surnames = ? AND birth = ?");
+        $stmt->execute([$username, $surnames, $birth]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result['id_user'] : null;
+    }
 }
 
 ?>

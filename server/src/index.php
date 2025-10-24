@@ -16,11 +16,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             throw new Exception("No puede haber campos vacíos");
         }
 
-        // Registrar al usuario
-        $userController->createUser($_POST['name'], $_POST['surnames'], $_POST['birth']);
+        // Comprobar si el usuario ya existe
+        $userID = $userController->getUserId($_POST['name'], $_POST['surnames'], $_POST['birth']);
 
-        // Obtener el ID del usuario
-        $userID = $userController->getLastInsertedId();
+        if (!$userID) {
+            // El usuario no existe, crearlo
+            $userController->createUser($_POST['name'], $_POST['surnames'], $_POST['birth']);
+            $userID = $userController->getLastInsertedId();
+        }
 
         // Registrar el peso
         $pesoController->createWeight($_POST['weight'], $_POST['height'], date('Y-m-d H:i:s'), $userID);
@@ -106,9 +109,9 @@ $min = $pesoController->getMin();
                 <tbody>
                     <?php foreach ($pesos as $peso): ?>
                         <tr class="tr">
-                            <th>
+                            <td>
                                 <?php echo htmlspecialchars($peso['name'] . ' ' . $peso['surnames']); ?>
-                            </th>
+                            </td>
 
                             <td>
                                 <?php echo htmlspecialchars($peso['birth']); ?>
