@@ -10,4 +10,6 @@ try {
 } catch (PDOException $e) {
     die("Error en la conexión: " . $e->getMessage());
 }
+
+$GLOBALS['pdo'] = $pdo;
 ?>
