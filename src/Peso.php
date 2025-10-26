@@ -14,6 +14,10 @@ class Peso
     // Crear el registro del peso
     public function createWeight($weight, $height, $date, $id_user)
     {
+        if ($weight < 0 || $height <= 0) {
+            return false;
+        }
+
         try {
             $stmt = $this->pdo->prepare("INSERT INTO Pesajes (peso, altura, fecha, id_user) 
                                         VALUES (?, ?, ?, ?)");
