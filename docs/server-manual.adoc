@@ -1,0 +1,57 @@
+= Manual de Despliegue del Servidor - PesoFraya
+
+== Introducción
+
+Este documento explica cómo poner en marcha por primera vez el entorno del proyecto **PesoFraya**, una aplicación web desarrollada en PHP con soporte para base de datos MySQL y contenedores Docker.  
+El objetivo es que cualquier usuario técnico pueda desplegar el servidor, ejecutar la aplicación y realizar pruebas correctamente.
+
+== Requisitos Previos
+
+Antes de comenzar, asegúrate de tener instaladas las siguientes herramientas en tu sistema:
+
+* **Docker**
+* **Docker Compose**
+* **Git**
+
+== Configuración del Entorno
+
+=== Clonar el repositorio
+
+Clona el repositorio del proyecto desde GitHub ejecutando el siguiente comando en tu terminal:
+
+[source, bash]
+----
+git clone git@github.com:PumukyDev/peso-fraya.git
+----
+
+=== Crear el archivo .env
+
+Dentro de la carpeta de /server, crea un archivo llamado `.env` con las siguientes variables de entorno para configurar la base de datos y phpMyAdmin. Remplaza los valores según tus necesidades, son valores por defecto.
+
+[source, .env]
+----
+DB_HOST=db
+DB_DATABASE=PesoFraya
+DB_USER=peso_user
+DB_PASSWORD=peso_pass
+DB_ROOT_PASSWORD=root_pass
+
+PMA_HOST=db
+PMA_USER=peso_user
+PMA_PASSWORD=peso_pass
+----
+
+=== Construir y levantar los contenedores
+
+Ejecuta el siguiente comando desde la raíz del proyecto:
+
+[source, bash]
+----
+docker-compose up -d --build
+----
+
+=== Acceder a la aplicación
+
+Ahora puedes acceder a la aplicación web en tu navegador en la siguiente URL:
+
+http://localhost:8080

@@ -1,0 +1,31 @@
+flowchart TD
+    A[Inicio] --> B[Registro de Usuario]
+    B -->|Usuario nuevo| C[Formulario: Nombre, Apellidos, Fecha de Nacimiento]
+    C --> D[Guardar datos personales]
+    D --> E[Inicio de Sesión]
+    B -->|Ya registrado| E
+
+    E --> F[Validar credenciales]
+    F -->|Correctas| G[Pantalla Principal]
+    F -->|Incorrectas| E
+
+    G --> H[RegistrarPeso y Altura]
+    H --> I[Formulario: Peso kg, Altura m, Fecha]
+    I --> J[Calcular IMC automáticamente]
+    J --> K[Guardar registro diario]
+
+    K --> L[Actualizar Histórico]
+    L --> M[Mostrar número total de registros]
+    L --> N[Mostrar peso máximo y mínimo]
+    L --> O[Mostrar lista de registros con IMC]
+    L --> P[Espacio reservado para gráfico de progreso]
+
+    G --> Q[Consultar Estadísticas]
+    Q --> M
+    Q --> N
+    Q --> O
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style G fill:#bbf,stroke:#333,stroke-width:1px
+    style L fill:#bfb,stroke:#333,stroke-width:1px
+    style P fill:#ffd,stroke:#333,stroke-width:1px

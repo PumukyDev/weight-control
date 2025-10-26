@@ -1,14 +1,92 @@
-= peso-fraya
+= Manual de Usuario - PesoFraya
 
-- Crear formulario para registrar datos personales: nombre, apellidos y fecha de nacimiento.
-- Guardar datos personales en almacenamiento persistente (localStorage o archivo JSON en backend simple).
-- Crear formulario para registrar peso (kg), altura (m) y fecha de la toma.
-- Calcular automáticamente el IMC: `IMC = peso / altura^2`.
-- Guardar los registros de peso y altura en almacenamiento persistente.
-- Restringir el registro a una entrada por día.
-- Mostrar mensaje de saludo personalizado usando el nombre del usuario.
-- Mostrar número total de registros de peso realizados.
-- Calcular y mostrar el peso máximo y mínimo histórico.
-- Mostrar lista de todos los registros con fecha, peso, altura e IMC.
-- Diseñar interfaz web básica, responsiva y legible.
-- Preparar espacio en la interfaz para un futuro gráfico de progreso.
+== Introducción
+
+**PesoFraya** (hay que darle una vuelta al nombre xD) es una aplicación web diseñada para ayudarte a registrar y controlar tu peso y altura diariamente, calcular tu IMC y generar un histórico de tus registros de forma sencilla. Este manual te guiará paso a paso para que puedas utilizar la aplicación de manera eficaz.
+
+== Registro y Acceso
+
+=== Registro de Usuario
+
+Para comenzar a utilizar PesoFraya, primero debes registrar tus datos personales:
+
+1. Accede a la página principal de la aplicación.
+2. Busca el formulario de registro de usuario.
+3. Introduce los siguientes datos:
+   * **Nombre**: tu nombre de pila.
+   * **Apellidos**: tus apellidos.
+   * **Fecha de nacimiento**: selecciona tu fecha de nacimiento.
+4. Pulsa el botón **Registrar** para guardar tus datos.
+
+*Nota:* Una vez registrado, tu información quedará guardada de forma segura en la aplicación y solo tú podrás acceder a tu historial.
+
+=== Inicio de Sesión
+
+Si ya estás registrado:
+
+1. Dirígete al formulario de inicio de sesión.
+2. Introduce tu **nombre**, **apellidos** y **fecha de nacimiento**.
+3. Pulsa **Iniciar sesión**.
+4. Serás recibido con un **mensaje de saludo personalizado**, usando tu nombre :D.
+
+== Registro de Peso y Altura
+
+=== Introducir Datos Diarios
+
+Cada día puedes registrar tus medidas:
+
+1. Accede al formulario de **Registro de Peso y Altura**.
+2. Introduce los siguientes datos:
+   * **Peso (kg)**: tu peso actual en kilogramos.
+   * **Altura (m)**: tu altura en metros.
+   * **Fecha**: la fecha de la toma (automáticamente se selecciona la fecha actual).
+3. Pulsa **Guardar** para registrar tus datos.
+
+*Nota:* La aplicación permite **solo un registro por día**.
+
+=== Cálculo Automático del IMC
+
+Una vez registrado tu peso y altura, la aplicación calculará automáticamente tu **IMC**:
+
+Este valor se mostrará junto con tus datos para cada registro.
+
+== Historial y Estadísticas
+
+=== Número Total de Registros
+
+En la página principal de tu cuenta podrás ver un contador con el **total de registros de peso realizados** hasta la fecha.
+
+=== Peso Máximo y Mínimo
+
+La aplicación también mostrará automáticamente tus valores de **peso máximo y mínimo histórico**, para que puedas seguir tu evolución.
+
+=== Lista de Registros
+
+Todos tus registros se mostrarán en una lista con la siguiente información:
+
+* Fecha de la toma.
+* Peso registrado.
+* Altura registrada.
+* IMC calculado.
+
+Esta lista se actualiza automáticamente cada vez que agregas un nuevo registro.
+
+=== Espacio para Gráfico de Progreso
+
+La interfaz de PesoFraya está diseñada para mostrar en el futuro un **gráfico de progreso**, donde podrás visualizar tu evolución de peso e IMC de forma visual.
+
+== Consejos de Uso
+
+* Registra tus datos diariamente para obtener un historial completo y útil.
+* Consulta el peso máximo y mínimo para evaluar tu progreso.
+* Utiliza el listado de registros para comparar tus medidas con el tiempo.
+* Mantén tus datos personales actualizados para que los cálculos sean precisos.
+
+== Interfaz de Usuario
+
+La aplicación cuenta con una **interfaz web simple, responsiva y legible**:
+
+* Formularios claros y etiquetados.
+* Botones grandes y accesibles.
+* Mensajes de confirmación para cada acción.
+* Secciones diferenciadas para datos personales, registro diario y estadísticas.
