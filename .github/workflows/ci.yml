@@ -23,7 +23,6 @@ jobs:
       - name: Run PHPUnit
         uses: php-actions/phpunit@v4
         with:
-          php_version: '8.2'
+          php_version: '8.3'
           version: 'latest'
-          working_dir: src
-          args: 'tests'
+          args: 'src/tests'
