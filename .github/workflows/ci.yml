@@ -1,0 +1,29 @@
+name: Run PHPUnit tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        uses: php-actions/composer@v6
+        with:
+          working_dir: src
+
+      - name: Run PHPUnit
+        uses: php-actions/phpunit@v4
+        with:
+          php_version: '8.2'
+          version: 'latest'
+          working_dir: src
+          args: 'tests'
