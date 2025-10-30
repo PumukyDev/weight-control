@@ -146,7 +146,7 @@ $total = $pesoController->getCount();
 
                             <td>
                                 <?php
-                                $imc = $peso['peso'] / ($peso['altura'] * $peso['altura']);
+                                $imc = $pesoController->calculateIMC($peso['peso'], $peso['altura']);
                                 echo htmlspecialchars(number_format($imc, 2));
                                 ?>
                             </td>

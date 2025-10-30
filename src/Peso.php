@@ -84,6 +84,15 @@ class Peso
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result['count'] > 0;
     }
+
+    // Calcular el IMC
+    public function calculateIMC($weight, $height)
+    {
+        if ($height <= 0) {
+            return 0;
+        }
+        return $weight / ($height * $height);
+    }
 }
 
 ?>

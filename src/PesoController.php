@@ -57,6 +57,12 @@ class PesoController
     {
         return $this->pesoModel->hasWeightToday($id_user);
     }
+
+    // Calcular IMC
+    public function calculateIMC($weight, $height)
+    {
+        return $this->pesoModel->calculateIMC($weight, $height);
+    }
 }
 
 ?>

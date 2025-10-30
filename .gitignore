@@ -1,2 +1,4 @@
 .env
 vendor
+src/config.php
+server/src/config.php
